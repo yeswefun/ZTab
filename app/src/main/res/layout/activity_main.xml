@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <FrameLayout
+        android:id="@+id/home_tab_fl"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#efefef" />
+
+    <RadioGroup
+        android:id="@+id/home_tab_rg"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:background="#ffdcd9cf"
+        android:gravity="bottom"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/home_rb"
+            style="@style/home_bottom_tab_style"
+            android:drawableTop="@drawable/ic_tab_home"
+            android:onClick="homeTabClick"
+            android:text="首页" />
+
+        <RadioButton
+            android:id="@+id/find_rb"
+            style="@style/home_bottom_tab_style"
+            android:drawableTop="@drawable/ic_tab_find"
+            android:onClick="findTabClick"
+            android:text="发现" />
+
+        <RadioButton
+            android:id="@+id/news_rb"
+            style="@style/home_bottom_tab_style"
+            android:drawableTop="@drawable/ic_tab_news"
+            android:onClick="newsTabClick"
+            android:text="新鲜" />
+
+        <RadioButton
+            android:id="@+id/msgs_rb"
+            style="@style/home_bottom_tab_style"
+            android:drawableTop="@drawable/ic_tab_msgs"
+            android:onClick="msgsTagClick"
+            android:text="消息" />
+
+    </RadioGroup>
+
+</LinearLayout>
