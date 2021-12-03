@@ -3,6 +3,7 @@ package com.z.ztab;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.RadioButton;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
@@ -48,6 +49,9 @@ FragmentTransactio#replace
     ft.replace() // remove the top and put current on the top of stack
         added.remove(old);
         added.add(f);
+
+保存状态的思路:
+    如果容器中没有就添加, 否则就显示当前，隐藏所有已经添加的
  */
 public class MainActivity extends AppCompatActivity {
 
@@ -63,6 +67,8 @@ public class MainActivity extends AppCompatActivity {
     private NewsFragment mNewsFragment;
     private MsgsFragment mMsgsFragment;
 
+    private FragmentManagerUtil mFragmentManagerUtil;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,46 +83,39 @@ public class MainActivity extends AppCompatActivity {
         mMsgsRb = findViewById(R.id.msgs_rb);
         mHomeRb.setChecked(true);
 
+        mFragmentManagerUtil = new FragmentManagerUtil(getSupportFragmentManager(), R.id.home_tab_fl);
         homeTabClick(null);
     }
 
     public void homeTabClick(View view) {
+        Toast.makeText(this, "home", Toast.LENGTH_SHORT).show();
         if (mHomeFragment == null) {
             mHomeFragment = new HomeFragment();
         }
-        FragmentManager sfm = getSupportFragmentManager();
-        FragmentTransaction ft = sfm.beginTransaction();
-        ft.replace(R.id.home_tab_fl, mHomeFragment);
-        ft.commit();
+        mFragmentManagerUtil.switchFragment(mHomeFragment);
     }
 
-    public void findTabClick(View view) {
+    public void findTabClick(View v) {
+        Toast.makeText(this, "find", Toast.LENGTH_SHORT).show();
         if (mFindFragment == null) {
             mFindFragment = new FindFragment();
         }
-        FragmentManager sfm = getSupportFragmentManager();
-        FragmentTransaction ft = sfm.beginTransaction();
-        ft.replace(R.id.home_tab_fl, mFindFragment);
-        ft.commit();
+        mFragmentManagerUtil.switchFragment(mFindFragment);
     }
 
-    public void newsTabClick(View view) {
-        if (mNewsFragment == null) {
-            mNewsFragment = new NewsFragment();
-        }
-        FragmentManager sfm = getSupportFragmentManager();
-        FragmentTransaction ft = sfm.beginTransaction();
-        ft.replace(R.id.home_tab_fl, mNewsFragment);
-        ft.commit();
-    }
-
-    public void msgsTagClick(View view) {
+    public void msgsTagClick(View v) {
+        Toast.makeText(this, "msgs", Toast.LENGTH_SHORT).show();
         if (mMsgsFragment == null) {
             mMsgsFragment = new MsgsFragment();
         }
-        FragmentManager sfm = getSupportFragmentManager();
-        FragmentTransaction ft = sfm.beginTransaction();
-        ft.replace(R.id.home_tab_fl, mMsgsFragment);
-        ft.commit();
+        mFragmentManagerUtil.switchFragment(mMsgsFragment);
+    }
+
+    public void newsTabClick(View v) {
+        Toast.makeText(this, "news", Toast.LENGTH_SHORT).show();
+        if (mNewsFragment == null) {
+            mNewsFragment = new NewsFragment();
+        }
+        mFragmentManagerUtil.switchFragment(mNewsFragment);
     }
 }
